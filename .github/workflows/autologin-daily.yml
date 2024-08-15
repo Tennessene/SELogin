@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-script:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -24,4 +24,5 @@ jobs:
 
     - name: Run Python script
       run: |
+        chmod +x chromedriver-linux64/chromedriver
         python main.py

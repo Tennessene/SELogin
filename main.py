@@ -52,7 +52,7 @@ if __name__ == '__main__':
 #    chrome_options.add_argument("--remote-debugging-port=0")
 
     # Path to ChromeDriver
-    service = Service('chromedriver-win64/chromedriver.exe')  # Adjust the path as needed
+    service = Service('chromedriver-linux64/chromedriver')  # Adjust the path as needed
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(service=service, options=chrome_options)
