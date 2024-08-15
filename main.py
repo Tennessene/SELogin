@@ -17,6 +17,7 @@ def visit_site(driver, name):
         name (str): The name of the site to visit (e.g., 'superuser').
     """
     url = f'https://{name}.com/'
+    print(f'Visiting {url}')
     driver.get(url)
     time.sleep(2)  # Wait for the page to load
 
@@ -28,7 +29,10 @@ def login_stackoverflow(driver):
     Args:
         driver (webdriver.Chrome): The Selenium WebDriver instance.
     """
-    driver.get('https://stackoverflow.com/users/login')
+    name = 'stackoverflow'
+    url = f'https://{name}.com/users/login'
+    print(f'Visiting {url}')
+    driver.get(url)
 
     wait = WebDriverWait(driver, 10)
 
