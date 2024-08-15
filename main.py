@@ -21,6 +21,18 @@ def visit_site(driver, name):
     driver.get(url)
     time.sleep(2)  # Wait for the page to load
 
+    # Visit meta site
+    if ".stackexchange" in name:
+        namearray = name.split('.')
+        basename = namearray[0]
+        url = f'https://{basename}.meta.stackexchange.com/'
+    else:
+        url = f'https://meta.{name}.com/'
+
+    print(f'Visiting {url}')
+    driver.get(url)
+    time.sleep(2)
+
 
 def login_stackexchange(driver):
     """
@@ -45,6 +57,12 @@ def login_stackexchange(driver):
     password.send_keys(Keys.RETURN)
 
     time.sleep(3)  # Wait for login to complete
+
+    # Visit meta site
+    url = f'https://meta.{name}.com/'
+    print(f'Visiting {url}')
+    driver.get(url)
+    time.sleep(2)
 
 
 if __name__ == '__main__':
