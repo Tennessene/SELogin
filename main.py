@@ -22,14 +22,14 @@ def visit_site(driver, name):
     time.sleep(2)  # Wait for the page to load
 
 
-def login_stackoverflow(driver):
+def login_stackexchange(driver):
     """
-    Logs into Stack Overflow using the provided credentials.
+    Logs into Stack Exchange using the provided credentials.
 
     Args:
         driver (webdriver.Chrome): The Selenium WebDriver instance.
     """
-    name = 'stackoverflow'
+    name = 'stackexchange'
     url = f'https://{name}.com/users/login'
     print(f'Visiting {url}')
     driver.get(url)
@@ -62,12 +62,12 @@ if __name__ == '__main__':
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
-        # Log in to Stack Overflow
-        login_stackoverflow(driver)
+        # Log in to Stack Exchange
+        login_stackexchange(driver)
 
         # Visit other sites
         sites = [
-            'superuser', 'serverfault', 'gaming.stackexchange', 'gamedev.stackexchange',
+            'stackoverflow', 'superuser', 'serverfault', 'gaming.stackexchange', 'gamedev.stackexchange',
             'apple.stackexchange', 'security.stackexchange', 'askubuntu',
             'english.stackexchange', 'unix.stackexchange', 'raspberrypi.stackexchange',
             'diy.stackexchange', 'photo.stackexchange'
