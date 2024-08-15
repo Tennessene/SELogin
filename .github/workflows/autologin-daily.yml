@@ -25,4 +25,4 @@ jobs:
     - name: Run Python script
       run: |
         chmod +x chromedriver-linux64/chromedriver
-        python main.py
+        python -u main.py
