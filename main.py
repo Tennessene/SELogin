@@ -54,8 +54,6 @@ def accept_cookies():
         )
         print(f"Clicking on accept cookie button: {cookie_button.text}")
         cookie_button.click()
-    else:
-        print("Cookies have already been accepted or are not availible")
 
 
 def login_stackexchange():
