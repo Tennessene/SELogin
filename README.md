@@ -56,6 +56,20 @@ Activate the environment
 source ./venv/bin/activate
 ```
 
+Edit environment file
+```bash
+sudo nano /etc/environment
+```
+
+Add environment variables to file
+```bash
+EMAIL=myemail@example.com
+PASSWORD=mypassword
+SITES="stackoverflow, superuser, serverfault, gaming.stackexchange, gamedev.stackexchange, apple.stackexchange, security.stackexchange, askubuntu, english.stackexchange, unix.stackexchange, raspberrypi.stackexchange, diy.stackexchange, photo.stackexchange"
+```
+
+When you're finished press `CTRL + X` and then `Y`.
+
 ### Creating Environment on Windows
 Create the virtual environment
 ```bash
@@ -67,6 +81,19 @@ Activate the environment
 .\venv\Scripts\activate
 ```
 
+Set environment variables
+```bash
+setx EMAIL myemail@example.com /m
+```
+
+```bash
+setx PASSWORD mypassword /m
+```
+
+```bash
+setx SITES "stackoverflow, superuser, serverfault, gaming.stackexchange, gamedev.stackexchange, apple.stackexchange, security.stackexchange, askubuntu, english.stackexchange, unix.stackexchange, raspberrypi.stackexchange, diy.stackexchange, photo.stackexchange" /m
+```
+
 ### Running
 Install selenium
 ```bash
@@ -76,5 +103,15 @@ Run SAL with the unbuffered option. It makes it so the log outputs things right 
 ```bash
 python -u main.py
 ```
+
+### Debugging
+
+You can see SAL working in your browser
+
+Go to chrome://inspect, click `Configure`, add `127.0.0.1:9222`, and click done. A "remote target" should pop up. When it does, click `Inspect`.
+
+Now you can watch SAL browse the web live!
+
+SAL also saves a screenshot as `stackexchange.png` so you can see right away if it successfully logged in or not.
 
 (c) 2024 Anston Sorensen
