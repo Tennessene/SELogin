@@ -62,6 +62,8 @@ def login_stackexchange():
 
     time.sleep(3)  # Wait for login to complete
 
+    driver.save_screenshot("stackexchange.png")
+
     # Visit meta site
     url = f"https://meta.{name}.com/"
     visit_url(url, 2)
