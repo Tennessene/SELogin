@@ -64,6 +64,8 @@ def login_stackexchange():
     url = f"https://{name}.com/users/login/"
     visit_url(url)
 
+    accept_cookies()
+
     wait = WebDriverWait(driver, 10)
 
     email = wait.until(EC.element_to_be_clickable((By.ID, 'email')))
@@ -77,8 +79,6 @@ def login_stackexchange():
     password.send_keys(Keys.RETURN)
 
     time.sleep(4) # Wait for login to complete
-
-    accept_cookies()
 
     url = f"https://{name}.com/users/15915140/anston-sorensen"
     visit_url(url)
@@ -120,5 +120,6 @@ if __name__ == '__main__':
         print(f"An error occurred: {e}")
     finally:
         # Always close the browser
+        print("Finished! Closing...")
         driver.close()
         driver.quit()
