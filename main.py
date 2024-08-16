@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time, os
 
-def visit_url(url, sleep_time):
+def visit_url(url):
     """
     Navigates to a given url.
 
@@ -17,7 +17,10 @@ def visit_url(url, sleep_time):
     """
     print(f"Visiting {url}")
     driver.get(url)
-    time.sleep(sleep_time) # Wait for the page to load
+
+    WebDriverWait(driver, 10).until(
+        lambda driver: driver.execute_script('return document.readyState') == 'complete'
+    )
 
 
 def visit_site(name):
@@ -28,8 +31,8 @@ def visit_site(name):
         name (str): The name of the site to visit (e.g., 'superuser').
     """
     url = f"https://{name}.com/users/current"
-    visit_url(url, 2)
-    accept_cookies(2)
+    visit_url(url)
+    accept_cookies()
 
     # Visit meta site
     if '.stackexchange' in name:
@@ -39,10 +42,10 @@ def visit_site(name):
     else:
         url = f"https://meta.{name}.com/users/current"
 
-    visit_url(url, 2)
-    accept_cookies(2)
+    visit_url(url)
+    accept_cookies()
 
-def accept_cookies(sleep_time):
+def accept_cookies():
     isPresent = len(driver.find_elements(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]')) > 0
     if isPresent:
 
@@ -51,8 +54,6 @@ def accept_cookies(sleep_time):
         )
         print(f"Clicking on accept cookie button: {cookie_button.text}")
         cookie_button.click()
-
-        time.sleep(sleep_time)
     else:
         print("Cookies have already been accepted or are not availible")
 
@@ -63,7 +64,7 @@ def login_stackexchange():
 
     name = 'stackexchange'
     url = f"https://{name}.com/users/login/"
-    visit_url(url, 0)
+    visit_url(url)
 
     wait = WebDriverWait(driver, 10)
 
@@ -77,19 +78,19 @@ def login_stackexchange():
     password.send_keys(passwordStr)
     password.send_keys(Keys.RETURN)
 
-    time.sleep(3)  # Wait for login to complete
+    time.sleep(4) # Wait for login to complete
 
-    accept_cookies(2)
+    accept_cookies()
 
     url = f"https://{name}.com/users/15915140/anston-sorensen"
-    visit_url(url, 2)
+    visit_url(url)
 
     driver.save_screenshot("stackexchange.png")
 
     # Visit meta site
     url = f"https://meta.{name}.com/users/current"
-    visit_url(url, 2)
-    accept_cookies(2)
+    visit_url(url)
+    accept_cookies()
 
 
 if __name__ == '__main__':
