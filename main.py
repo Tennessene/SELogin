@@ -45,7 +45,7 @@ def login_stackexchange():
     # Logs into Stack Exchange using the provided credentials.
 
     name = 'stackexchange'
-    url = f"https://{name}.com/users/login"
+    url = f"https://{name}.com/users/login/"
     visit_url(url, 0)
 
     wait = WebDriverWait(driver, 10)
