@@ -14,16 +14,21 @@ Setup
 
 ### Providing Information
 
-You must provide your credentials by putting your email and password into repository actions secrets. Put your email into a secret with the name "EMAIL" and your password into a secret named "PASSWORD".
+You must provide your credentials by putting your email and password into [repository actions secrets](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 
-Any other sites you would like SAL to log in to you must put into a secret named "SITES". They must be the domain of the site without ".com". For example, for Ask Ubuntu, it's domain is askubuntu.com. Use "askubuntu". Or for Apple Stack Exchange, its domain is apple.stackexchange.com. Use "apple.stackexchange".
+Put your email into a secret with the name `EMAIL`
+![Email Secret](https://i.sstatic.net/515cluLH.png)
 
-Your final "SITES" secret may look something like this:
-```
-stackoverflow, superuser, serverfault, gaming.stackexchange, gamedev.stackexchange, apple.stackexchange, 
-security.stackexchange, askubuntu, english.stackexchange, unix.stackexchange, raspberrypi.stackexchange, 
-diy.stackexchange, photo.stackexchange
-```
+And your password into a secret named `PASSWORD`
+![Password Secret](https://i.sstatic.net/518N2atH.png)
+
+Any other sites you would like SAL to log in to you must put into a secret named `SITES`. They must be the domain of the site without ".com". For example, for Ask Ubuntu, it's domain is `askubuntu.com`. Use `askubuntu`. Or for Apple Stack Exchange, its domain is `apple.stackexchange.com`. Use `apple.stackexchange`.
+
+Your final `SITES` secret may look something like this:
+![Sites Secret](https://i.sstatic.net/JfIQkLF2.png)
+
+Your secrets list should look like this:
+![Repository Secrets](https://i.sstatic.net/f8izJw6t.png)
 
 ### Watch it Work
 After this, you can sit back and relax as it logs in at 00:00 UTC every day.
