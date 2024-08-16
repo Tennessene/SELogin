@@ -27,7 +27,7 @@ def visit_site(name):
     Args:
         name (str): The name of the site to visit (e.g., 'superuser').
     """
-    url = f"https://{name}.com/"
+    url = f"https://{name}.com/users/current"
     visit_url(url, 2)
     accept_cookies(2)
 
@@ -35,9 +35,9 @@ def visit_site(name):
     if '.stackexchange' in name:
         namearray = name.split('.')
         basename = namearray[0]
-        url = f"https://{basename}.meta.stackexchange.com/"
+        url = f"https://{basename}.meta.stackexchange.com/users/current"
     else:
-        url = f"https://meta.{name}.com/"
+        url = f"https://meta.{name}.com/users/current"
 
     visit_url(url, 2)
     accept_cookies(2)
@@ -81,10 +81,13 @@ def login_stackexchange():
 
     accept_cookies(2)
 
+    url = f"https://{name}.com/users/15915140/anston-sorensen"
+    visit_url(url, 2)
+
     driver.save_screenshot("stackexchange.png")
 
     # Visit meta site
-    url = f"https://meta.{name}.com/"
+    url = f"https://meta.{name}.com/users/current"
     visit_url(url, 2)
     accept_cookies(2)
 
