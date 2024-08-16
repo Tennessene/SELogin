@@ -122,4 +122,5 @@ if __name__ == '__main__':
         print(f"An error occurred: {e}")
     finally:
         # Always close the browser
+        driver.close()
         driver.quit()
