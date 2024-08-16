@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
+import time, os
 
 def visit_url(url, sleep_time):
     """
@@ -54,8 +54,10 @@ def login_stackexchange():
     password = wait.until(EC.element_to_be_clickable((By.ID, 'password')))
 
     # Enter your credentials
-    email.send_keys("${{ secrets.EMAIL }}")
-    password.send_keys("${{ secrets.PASSWORD }}")
+    emailStr = os.getenv('EMAIL')
+    passwordStr = os.getenv('PASSWORD')
+    email.send_keys(emailStr)
+    password.send_keys(passwordStr)
     password.send_keys(Keys.RETURN)
 
     time.sleep(3)  # Wait for login to complete
@@ -84,7 +86,7 @@ if __name__ == '__main__':
         login_stackexchange()
 
         # Visit other sites
-        sites = "${{ secrets.SITES }}"
+        sites = os.getenv('SITES')
         sitesf = sites.split(', ')
 
         for site in sitesf:
