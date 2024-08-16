@@ -19,6 +19,7 @@ def visit_url(url, sleep_time):
     driver.get(url)
     time.sleep(sleep_time) # Wait for the page to load
 
+
 def visit_site(name):
     """
     Navigates to a given site.
@@ -28,6 +29,7 @@ def visit_site(name):
     """
     url = f"https://{name}.com/"
     visit_url(url, 2)
+    accept_cookies(2)
 
     # Visit meta site
     if '.stackexchange' in name:
@@ -38,6 +40,21 @@ def visit_site(name):
         url = f"https://meta.{name}.com/"
 
     visit_url(url, 2)
+    accept_cookies(2)
+
+def accept_cookies(sleep_time):
+    isPresent = len(driver.find_elements(By.XPATH, '//*[@id="onetrust-accept-btn-handler"]')) > 0
+    if isPresent:
+
+        cookie_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="onetrust-accept-btn-handler"]'))
+        )
+        print(f"Clicking on accept cookie button: {cookie_button.text}")
+        cookie_button.click()
+
+        time.sleep(sleep_time)
+    else:
+        print("Cookies have already been accepted or are not availible")
 
 
 def login_stackexchange():
@@ -62,11 +79,14 @@ def login_stackexchange():
 
     time.sleep(3)  # Wait for login to complete
 
+    accept_cookies(2)
+
     driver.save_screenshot("stackexchange.png")
 
     # Visit meta site
     url = f"https://meta.{name}.com/"
     visit_url(url, 2)
+    accept_cookies(2)
 
 
 if __name__ == '__main__':
