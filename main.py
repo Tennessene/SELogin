@@ -84,14 +84,10 @@ if __name__ == '__main__':
         login_stackexchange()
 
         # Visit other sites
-        sites = [
-            'stackoverflow', 'superuser', 'serverfault', 'gaming.stackexchange', 'gamedev.stackexchange',
-            'apple.stackexchange', 'security.stackexchange', 'askubuntu',
-            'english.stackexchange', 'unix.stackexchange', 'raspberrypi.stackexchange',
-            'diy.stackexchange', 'photo.stackexchange'
-        ]
+        sites = "${{ secrets.SITES }}"
+        sitesf = sites.split(', ')
 
-        for site in sites:
+        for site in sitesf:
             visit_site(site)
 
     except Exception as e:
