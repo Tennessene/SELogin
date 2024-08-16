@@ -7,19 +7,27 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
+def visit_url(url, sleep_time):
+    """
+    Navigates to a given url.
 
-def visit_site(driver, name):
+    Args:
+        url (str): The url of the site to visit (e.g., 'https://stackexchange.com/').
+        sleep_time (int): The time in seconds to sleep before moving on.
+    """
+    print(f'Visiting {url}')
+    driver.get(url)
+    time.sleep(sleep_time) # Wait for the page to load
+
+def visit_site(name):
     """
     Navigates to a given site.
 
     Args:
-        driver (webdriver.Chrome): The Selenium WebDriver instance.
         name (str): The name of the site to visit (e.g., 'superuser').
     """
     url = f'https://{name}.com/'
-    print(f'Visiting {url}')
-    driver.get(url)
-    time.sleep(2)  # Wait for the page to load
+    visit_url(url, 2)
 
     # Visit meta site
     if ".stackexchange" in name:
@@ -29,22 +37,16 @@ def visit_site(driver, name):
     else:
         url = f'https://meta.{name}.com/'
 
-    print(f'Visiting {url}')
-    driver.get(url)
-    time.sleep(2)
+    visit_url(url, 2)
 
 
-def login_stackexchange(driver):
-    """
-    Logs into Stack Exchange using the provided credentials.
+def login_stackexchange():
 
-    Args:
-        driver (webdriver.Chrome): The Selenium WebDriver instance.
-    """
+    # Logs into Stack Exchange using the provided credentials.
+
     name = 'stackexchange'
     url = f'https://{name}.com/users/login'
-    print(f'Visiting {url}')
-    driver.get(url)
+    visit_url(url, 0)
 
     wait = WebDriverWait(driver, 10)
 
@@ -60,9 +62,7 @@ def login_stackexchange(driver):
 
     # Visit meta site
     url = f'https://meta.{name}.com/'
-    print(f'Visiting {url}')
-    driver.get(url)
-    time.sleep(2)
+    visit_url(url, 2)
 
 
 if __name__ == '__main__':
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
     try:
         # Log in to Stack Exchange
-        login_stackexchange(driver)
+        login_stackexchange()
 
         # Visit other sites
         sites = [
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         ]
 
         for site in sites:
-            visit_site(driver, site)
+            visit_site(site)
 
     except Exception as e:
         print(f"An error occurred: {e}")
