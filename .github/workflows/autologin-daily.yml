@@ -22,5 +22,5 @@ jobs:
     - name: Upload screenshot
       uses: actions/upload-artifact@v4
       with:
-        name: SE_Screenshot
+        name: po
         path: po.txt
