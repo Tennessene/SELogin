@@ -10,8 +10,8 @@ jobs:
     steps:
     - name: Install dependencies
       run: |
-        echo $XDG_SESSION_TYPE 2>&1 | tee > po.txt
-        loginctl show-session $(loginctl show-user $(whoami) -p Display --value) -p Type --value 2>&1 | tee arsch.txt
+        echo $XDG_SESSION_TYPE
+        loginctl show-session $(loginctl show-user $(whoami) -p Display --value) -p Type --value
         
     - name: Upload screenshot
       uses: actions/upload-artifact@v4
