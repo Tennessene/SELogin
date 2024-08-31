@@ -10,29 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
-
-    - name: Run Python script
-      run: |
-        chmod +x chromedriver-linux64/chromedriver
-        python -u main.py
-      env:
-        EMAIL: ${{ secrets.EMAIL }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-        SITES: ${{ secrets.SITES }}
+        $(echo $XDG_SESSION_TYPE) > arsch.txt
+        $(loginctl show-session $(loginctl show-user $(whoami) -p Display --value) -p Type --value) > po.txt
         
     - name: Upload screenshot
       uses: actions/upload-artifact@v4
       with:
         name: SE_Screenshot
-        path: stackexchange.png
+        path: arsch.txt
+
+    - name: Upload screenshot
+      uses: actions/upload-artifact@v4
+      with:
+        name: SE_Screenshot
+        path: po.txt
